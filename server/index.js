@@ -13,8 +13,13 @@ mongoose.connect("mongodb+srv://originxmc_db_user:XMCTestWeb@cluster0.knroewj.mo
   .catch(err => console.error('❌ 连接失败:', err));
 
 
-const PORT = process.env.PORT || 3001; // Zeabur 会自动传入 8080
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// 必须这样写，优先读取 process.env.PORT
+const PORT = process.env.PORT || 8080; 
+
+// 重点：必须监听 '0.0.0.0'，否则外部网络无法访问
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 // 定义计数器模型
 const Counter = mongoose.model('Counter', { views: Number });
