@@ -21,8 +21,8 @@ const fetchAllData = async () => {
   try {
     // 同时获取访问量和留言列表
     const [visitRes, msgRes] = await Promise.all([
-      fetch('API_BASE/api/visit'),
-      fetch('API_BASE/api/messages')
+      fetch('${API_BASE}/api/visit'),
+      fetch('${API_BASE}/api/messages')
     ]);
     
     const visitData = await visitRes.json();
@@ -48,7 +48,7 @@ const fetchAllData = async () => {
   const deleteMessage = async (id: string) => {
     if (!window.confirm("确定要删除这条留言吗？")) return;
     
-    await fetch(`API_BASE/api/messages/${id}`, {
+    await fetch(`${API_BASE}/api/messages/${id}`, {
       method: 'DELETE',
     });
     fetchAllData(); // 刷新列表
@@ -56,7 +56,7 @@ const fetchAllData = async () => {
 
   const likeMessage = async (id: string) => {
     try {
-      await fetch(`API_BASE/api/messages/${id}/like`, {
+      await fetch(`${API_BASE}/api/messages/${id}/like`, {
         method: 'PATCH',
       });
       // 点赞成功后刷新列表显示最新数字
@@ -78,7 +78,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   setIsLoading(true);
   try {
-    await fetch('API_BASE/api/messages', {
+    await fetch('${API_BASE}/api/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username: name, content: text })
