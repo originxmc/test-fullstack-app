@@ -4,7 +4,11 @@ import cors from 'cors';
 
 const app = express();
 const cors = require('cors');
-app.use(cors({ origin: '*' })); // 允许所有来源，解决跨域问题
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));// 允许所有来源，解决跨域问题
 app.use(express.json());
 
 // 数据库连接 (使用你之前成功的那个 URI)
