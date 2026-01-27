@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 const app = express();
-app.use(cors()); // 允许前端 5173 端口跨域访问
+app.use(cors({ origin: '*' })); // 暂时允许所有来源，确保通畅
 app.use(express.json());
 
 // 数据库连接 (使用你之前成功的那个 URI)
@@ -11,6 +11,10 @@ const uri = "你的 MongoDB Atlas 连接字符串";
 mongoose.connect("mongodb+srv://originxmc_db_user:XMCTestWeb@cluster0.knroewj.mongodb.net/?appName=Cluster0")
   .then(() => console.log('✅ MongoDB 已连接'))
   .catch(err => console.error('❌ 连接失败:', err));
+
+
+const PORT = process.env.PORT || 3001; // Zeabur 会自动传入 8080
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // 定义计数器模型
 const Counter = mongoose.model('Counter', { views: Number });
