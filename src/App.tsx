@@ -21,8 +21,8 @@ const fetchAllData = async () => {
   try {
     // 同时获取访问量和留言列表
     const [visitRes, msgRes] = await Promise.all([
-      fetch('${API_BASE}/api/visit'),
-      fetch('${API_BASE}/api/messages')
+      fetch(`${API_BASE}/api/visit`),
+      fetch(`${API_BASE}/api/messages`)
     ]);
     
     const visitData = await visitRes.json();
@@ -78,7 +78,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   setIsLoading(true);
   try {
-    await fetch('${API_BASE}/api/messages', {
+    await fetch(`${API_BASE}/api/messages`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username: name, content: text })
