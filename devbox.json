@@ -1,0 +1,9 @@
+{
+  "packages": ["nodejs_20"],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!'",
+      "nix --version"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+
+/* 移动端适配：防止横向滚动、iOS 输入框聚焦不放大 */
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* 确保图片在窄屏不撑破布局 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 自定义滚动条样式 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #22d3ee;
+  border-radius: 10px;
+}
