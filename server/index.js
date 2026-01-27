@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 const app = express();
-app.use(cors({ origin: '*' })); // 暂时允许所有来源，确保通畅
+const cors = require('cors');
+app.use(cors({ origin: '*' })); // 允许所有来源，解决跨域问题
 app.use(express.json());
 
 // 数据库连接 (使用你之前成功的那个 URI)
