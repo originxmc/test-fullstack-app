@@ -6,7 +6,7 @@ interface IMessage {
   content: string;
   createdAt: string;
 }
-const API_BASE = "https://xmc-tap.zeabur.app"; // 粘贴你刚才拿到的地址
+const API_BASE = "https://xmc-tpa.zeabur.app"; // 粘贴你刚才拿到的地址
 
 function App() {
   const [count, setCount] = useState(0);
