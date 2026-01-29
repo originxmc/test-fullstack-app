@@ -6,7 +6,7 @@ interface IMessage {
   content: string;
   createdAt: string;
 }
-const API_BASE = "https://xmc-tpa.zeabur.app"; // 粘贴你刚才拿到的地址
+const API_BASE = "https://test-fullstack-app-production.up.railway.app"; // 粘贴你刚才拿到的地址
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,25 +17,29 @@ function App() {
 
   // 获取数据的函数
  // 2. 修改 fetchAllData，在获取数据后滚动
-const fetchAllData = async () => {
+ const fetchAllData = async () => {
   try {
-    // 同时获取访问量和留言列表
     const [visitRes, msgRes] = await Promise.all([
       fetch(`${API_BASE}/api/visit`),
       fetch(`${API_BASE}/api/messages`)
     ]);
     
+    // 增加状态码检查，方便调试
+    if (!visitRes.ok || !msgRes.ok) throw new Error("服务器响应异常");
+
     const visitData = await visitRes.json();
     const msgData = await msgRes.json();
     
     setCount(visitData.views);
     setMessages(msgData);
+
+    // 只有在数据真正更新后才滚动
+    setTimeout(() => {
+      scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   } catch (err) {
-    console.error("数据拉取失败:", err);
+    console.error("Railway 数据拉取失败:", err);
   }
-  
-  // 3. 这里的逻辑让它回到顶部看最新留言
-  scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
   useEffect(() => {
