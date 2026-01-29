@@ -100,23 +100,23 @@ const handleSubmit = async (e: React.FormEvent) => {
   <div className="min-h-screen bg-slate-900 text-white p-8 flex flex-col items-center">
     {/* 1. 访问量展示 */}
     <div className="mb-10 text-center p-6 bg-slate-800 rounded-xl border border-slate-700 shadow-xl">
-      <h1 className="text-slate-400 text-sm uppercase tracking-widest mb-2">Total Visits</h1>
+      <h1 className="text-slate-400 text-sm uppercase tracking-widest mb-2">总访问量</h1>
       <span className="text-5xl font-black text-cyan-400 font-mono">{count}</span>
     </div>
 
     {/* 留言墙主容器 */}
     <div className="w-full max-w-lg bg-slate-800 p-6 rounded-xl border border-slate-700">
-      <h2 className="text-xl font-bold mb-6 text-cyan-400">Guestbook</h2>
+      <h2 className="text-xl font-bold mb-6 text-cyan-400">留言板</h2>
       
       {/* 2. 输入表单 - 这里只会出现一次 */}
       <form onSubmit={handleSubmit} className="mb-8 space-y-4">
         <input 
           className="w-full bg-slate-900 border border-slate-700 p-3 rounded focus:border-cyan-500 outline-none transition"
-          placeholder="Your Name" value={name} onChange={e => setName(e.target.value)}
+          placeholder="你的名称" value={name} onChange={e => setName(e.target.value)}
         />
         <textarea 
           className="w-full bg-slate-900 border border-slate-700 p-3 rounded h-24 focus:border-cyan-500 outline-none transition"
-          placeholder="Say something nice..." value={text} onChange={e => setText(e.target.value)}
+          placeholder="说点什么..." value={text} onChange={e => setText(e.target.value)}
         />
         <button 
           disabled={isLoading}
@@ -124,7 +124,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             isLoading ? 'bg-slate-600 cursor-not-allowed' : 'bg-cyan-600 hover:bg-cyan-500'
           }`}
         >
-          {isLoading ? 'Sending...' : 'Post Message'}
+          {isLoading ? '发送中...' : '发送信息'}
         </button>
       </form>
 
@@ -137,7 +137,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             <button 
               onClick={() => deleteMessage(m._id)} 
               className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-red-500/10 text-red-500 opacity-0 group-hover:opacity-100 hover:bg-red-500 hover:text-white transition-all"
-              title="Delete message"
+              title="删除信息"
             >
               ✕
             </button>
